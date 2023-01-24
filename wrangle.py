@@ -85,9 +85,7 @@ def wrangle_zillow():
 def scale_data(train, 
                validate, 
                test, 
-               columns_to_scale=['bedrooms', 'bathrooms', 'house_sqft',
-                                 'lot_size_sqft'],
-                                 return_scaler=False):
+               columns_to_scale, return_scaler=False):
     '''
     Scales the 3 data splits. 
     Takes in train, validate, and test data splits and returns them scaled.
@@ -115,3 +113,5 @@ def scale_data(train,
         return mm_scaler, train_scaled, validate_scaled, test_scaled
     else:
         return train_scaled, validate_scaled, test_scaled
+    
+
