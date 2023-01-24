@@ -37,80 +37,68 @@ def plot_q4(train):
     plt.title('Bedrooms vs Tax Value')
     plt.show()
     
+    
 def q2_stats_test(train):
     
-    '''this function which takes in a train data set and calculates and returns a specific 
-       t-test for the mean of bathroom data'''
+    '''a function which takes in a train data set and calculates and returns a
+       pearsons r test for bathrooms and tax value'''
     
     # setting alpha
     a = 0.05
-    # creating a mean of bathrooms
-    avg_bath = train['bathrooms'].mean()
-    
-    # using the mean to create mask data frames on either side
-    above_bath = train[train.bathrooms >avg_bath].bathrooms
-    below_bath = train[train.bathrooms <= avg_bath].bathrooms
     
     # performing a t test
-    t, p = stats.ttest_ind(above_bath, below_bath, equal_var=False)
+    corr, p = stats.pearsonr(train.bedrooms, train.tax_value)
+    corr, p
 
     # if statement to return our results
-    if p / 2 > a:
-        print("We fail to reject null hypothesis")
-    elif t < 0:
+    if p > a:
         print("We fail to reject null hypothesis")
     else:
-        print("We reject the null hypothesis")
+        print("We reject the null hypothesis, there is correlation")
         
-    print(f"t: {t}")
-    print(f"p: {p}")
+    print(f"correlation: {corr}")
+    print(f"p:           {p}")
+    
     
 def q4_stats_test(train):
-    '''this function which takes in a train data set and calculates and returns a specific 
-       t-test for the mean of bedroom data'''
+    
+    '''a function which takes in a train data set and calculates and returns a
+       pearsons r test for bedrooms and tax value'''
+    
+    # setting alpha
     a = 0.05
-    # creating an average metric of bedroom count
-    avg_bed = train['bedrooms'].mean()
     
-    # creating a mask for a new data frame
-    abov_bed_sample = train[train.bedrooms > avg_bed].bedrooms
-    
-    # perform a t test
-    t, p = stats.ttest_1samp(abov_bed_sample , avg_bed)
-    
+    # performing a t test
+    corr, p = stats.pearsonr(train.bedrooms, train.tax_value)
+    corr, p
+
     # if statement to return our results
     if p > a:
-        print('We fail to reject null hypothesis: There is not a significant difference in the mean')
+        print("We fail to reject null hypothesis")
     else:
-        print("We reject null hypothesis: There is some significant difference in the mean")
+        print("We reject the null hypothesis, there is correlation")
         
-    print(f"t: {t}")
-    print(f"p: {p}")
+    print(f"correlation: {corr}")
+    print(f"p:           {p}")
+    
 
 def q1_stats_test(train):
     
-    '''a function which takes in a train data set and calculates and returns a specific 
-       t-test for the mean of house sqft data'''
+    '''a function which takes in a train data set and calculates and returns a
+       pearsons r test for house sqft and tax value'''
     
     # setting alpha
     a = 0.05
-    # creating a mean of house sqft
-    avg_house_sqft = train['house_sqft'].mean()
-    
-    # using the mean to create mask data frames on either side
-    above_house_sqft = train[train.house_sqft >avg_house_sqft].house_sqft
-    below_house_sqft = train[train.house_sqft <= avg_house_sqft].house_sqft
     
     # performing a t test
-    t, p = stats.ttest_ind(above_house_sqft, below_house_sqft, equal_var=False)
+    corr, p = stats.pearsonr(train.house_sqft, train.tax_value)
+    corr, p
 
     # if statement to return our results
-    if p / 2 > a:
-        print("We fail to reject null hypothesis")
-    elif t < 0:
+    if p > a:
         print("We fail to reject null hypothesis")
     else:
-        print("We reject the null hypothesis")
+        print("We reject the null hypothesis, there is correlation")
         
-    print(f"t: {t}")
-    print(f"p: {p}")
+    print(f"correlation: {corr}")
+    print(f"p:           {p}")
